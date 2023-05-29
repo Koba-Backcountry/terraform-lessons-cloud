@@ -13,7 +13,7 @@ resource "aws_instance" "web" {
   metadata_options {
     http_endpoint = "enabled"
     http_tokens   = "optional"
-  } #${var.server_name}
+  }
   vpc_security_group_ids      = [aws_security_group.web.id]
   user_data_replace_on_change = true
   user_data                   = <<EOF
@@ -25,7 +25,7 @@ echo "<html>" > /var/www/html/index.html
 echo "<body bgcolor='#1A5276'>" >> /var/www/html/index.html
 echo "<center>" >> /var/www/html/index.html
 echo "<br><h1><font color='#D68910'>Build by Power of Terraform with CLOUD</font></h1><br><br>" >> /var/www/html/index.html
-echo "<br><h2><font color='#E74C3C'>PROD WebServer with IP: $myip</font></h2><br><br>" >> /var/www/html/index.html
+echo "<br><h2><font color='#E74C3C'>${var.server_name}-WebServer with IP: $myip</font></h2><br><br>" >> /var/www/html/index.html
 echo "<br><h3><font color='#27AE60'>Modified Content from ALB Version 1.0</font></h3><br><br>" >> /var/www/html/index.html
 echo "<br><h2><font color='#E74C3C'>Mari Bubu Koba</font></h2><br><br>" >> /var/www/html/index.html
 echo "</center>" >> /var/www/html/index.html
